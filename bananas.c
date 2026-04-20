@@ -4,7 +4,9 @@
 #include <time.h>
 #include <ncurses.h>
 #include <unistd.h>
-
+#include <wchar.h>
+#include <ncursesw/ncurses.h> // Ensure you use the 'w' version
+#include <locale.h>
 #define MAX_BANANAS 8
 #define POINTS_PER_BANANA 120
 #define PI 3.1415926535
@@ -67,6 +69,7 @@ void rotate(float *x, float *y, float *z, float rx, float ry, float rz) {
 }
 
 int main() {
+    setlocale(LC_ALL, "");
     initscr(); noecho(); curs_set(0); timeout(0);
     setup_colors();
     generate_model();
